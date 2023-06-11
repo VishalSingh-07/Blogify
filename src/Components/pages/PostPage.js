@@ -4,9 +4,11 @@ import { formatISO9075 } from "date-fns";
 import { UserContext } from "../../UserContext";
 import "./pages.css";
 import DeletePost from "./DeletePost";
+import Loader from "../Loader";
 function PostPage() {
   const url = `${process.env.REACT_APP_API_URL}`;
   const [postInfo, setPostInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   const [showModal, setShowModal] = useState(false);
@@ -20,11 +22,23 @@ function PostPage() {
     fetch(`${url}/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
+        setIsLoading(false);
       });
     });
   }, [id]);
+  if (isLoading) {
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
+  }
   if (!postInfo) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
   }
   return (
     <div className="post_page">
@@ -33,7 +47,10 @@ function PostPage() {
       <div className="author">by @{postInfo.author.username}</div>
       {userInfo.id === postInfo.author._id && (
         <div className="edit-row">
-          <Link to={`/edit/${postInfo._id}`} className="edit-btn">
+          <Link
+            to={`/edit/${postInfo._id}`}
+            className="edit-btn"
+            onClick={() => setIsLoading(true)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

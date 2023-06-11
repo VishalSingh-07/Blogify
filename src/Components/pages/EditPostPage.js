@@ -13,6 +13,7 @@ function EditPostPage() {
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     fetch(`${url}/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
@@ -31,6 +32,7 @@ function EditPostPage() {
       }, 5000);
       return;
     }
+    setIsLoading(true);
     const data = new FormData();
     data.set("title", title);
     data.set("summary", summary);
@@ -52,6 +54,7 @@ function EditPostPage() {
       toast.error(errorResponse || "Oops, Unable to update your Blog");
       toast.info("Please try again later");
     }
+    setIsLoading(false);
   }
   if (redirect) {
     return <Navigate to={`/post/${id}`} />;
@@ -77,8 +80,8 @@ function EditPostPage() {
           onChange={(ev) => setSummary(ev.target.value)}></input>
         <input type="file" onChange={(ev) => setFiles(ev.target.files)}></input>
         <Editor onChange={setContent} value={content} />
-        <button className="button_primary" style={{ marginTop: "15px" }}>
-          Update Post
+        <button className="button_primary" style={{ marginTop: "15px" }} disabled={isLoading}>
+          {isLoading ? "Updating Post..." : "Update Post"}
         </button>
       </form>
     </>

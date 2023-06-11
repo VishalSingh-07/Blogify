@@ -13,6 +13,7 @@ function CreatePost() {
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   async function createNewPost(ev) {
     ev.preventDefault();
     if (title.length === 0 || summary.length === 0 || content.length === 0 || files.length == 0) {
@@ -22,6 +23,7 @@ function CreatePost() {
       }, 5000);
       return;
     }
+    setIsLoading(true);
     const data = new FormData();
     data.set("title", title);
     data.set("summary", summary);
@@ -40,6 +42,7 @@ function CreatePost() {
       toast.error(errorResponse || "Oops, Unable to add your new blog");
       toast.info("Please try again later");
     }
+    setIsLoading(false);
   }
 
   if (redirect) {
@@ -66,8 +69,11 @@ function CreatePost() {
           onChange={(ev) => setSummary(ev.target.value)}></input>
         <input type="file" onChange={(ev) => setFiles(ev.target.files)}></input>
         <Editor onChange={setContent} value={content} />
-        <button className="button_primary" style={{ marginTop: "15px" }}>
+        {/* <button className="button_primary" style={{ marginTop: "15px" }}>
           Create Post
+        </button> */}
+        <button className="button_primary" style={{ marginTop: "15px" }} disabled={isLoading}>
+          {isLoading ? "Creating Post..." : "Create Post"}
         </button>
       </form>
     </>

@@ -94,3 +94,13 @@ svg {
   margin-right: 10px;
   width: 50px;
 }
+.loader {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  width: 30%;
+}
+
+

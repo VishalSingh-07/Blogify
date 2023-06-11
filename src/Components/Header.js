@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import Loader from "./Loader";
 import Profile from "./Profile";
 import "./Profile.css";
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const url = `${process.env.REACT_APP_API_URL}`;
   const { userInfo, setUserInfo } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     fetch(`${url}/profile`, {
       credentials: "include",
@@ -14,12 +16,20 @@ function Header() {
       response.json().then((userinfo) => {
         setUserInfo(userinfo);
       });
+      setIsLoading(false);
     });
   }, []);
   const handleMenu = () => {
     setShowMenu(!showMenu);
   };
   const username = userInfo?.username;
+  if (isLoading) {
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <header>
       <Link to="/" className="logo">

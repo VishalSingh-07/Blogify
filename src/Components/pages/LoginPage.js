@@ -6,13 +6,13 @@ import { UserContext } from "../../UserContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 function LoginPage() {
   const url = `${process.env.REACT_APP_API_URL}`;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { setUserInfo } = useContext(UserContext);
   async function login(ev) {
     ev.preventDefault();
@@ -23,6 +23,7 @@ function LoginPage() {
       }, 5000); // 5 seconds
       return;
     }
+    setIsLoading(true);
     const response = await fetch(`${url}/login`, {
       method: "POST",
       body: JSON.stringify({ email, password }),
@@ -39,6 +40,7 @@ function LoginPage() {
       const errorResponse = await response.json();
       toast.error(errorResponse || "Wrong Credentials");
     }
+    setIsLoading(false);
   }
   if (redirect) {
     return <Navigate to={"/"} />;
@@ -63,7 +65,9 @@ function LoginPage() {
           placeholder="password"
           value={password}
           onChange={(ev) => setPassword(ev.target.value)}></input>
-        <button className="button_primary">Login</button>
+        <button className="button_primary" disabled={isLoading}>
+          {isLoading ? "Logging...." : "Login"}
+        </button>
       </form>
     </>
   );

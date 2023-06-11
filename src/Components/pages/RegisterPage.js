@@ -11,6 +11,7 @@ function RegisterPage() {
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   async function register(ev) {
     ev.preventDefault();
     if (username.length == 0 || email.length == 0 || password.length == 0) {
@@ -20,6 +21,8 @@ function RegisterPage() {
       }, 5000);
       return;
     }
+    setIsLoading(true);
+
     const response = await fetch(`${url}/register`, {
       method: "POST",
       body: JSON.stringify({ username, email, password }),
@@ -39,6 +42,7 @@ function RegisterPage() {
         toast.info("Plese Enter Unique Email");
       }
     }
+    setIsLoading(false);
   }
   if (redirect) {
     return <Navigate to={"/login"} />;
@@ -68,7 +72,9 @@ function RegisterPage() {
         placeholder="password"
         value={password}
         onChange={(ev) => setPassword(ev.target.value)}></input>
-      <button className="button_primary">Register</button>
+      <button className="button_primary" disabled={isLoading}>
+        {isLoading ? "Creating Account..." : "Register"}
+      </button>
     </form>
   );
 }

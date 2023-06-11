@@ -3,16 +3,19 @@ import { Navigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./DeletePost.css";
+import Loader from "../Loader";
 const DeletePage = ({ closeModal }) => {
   const url = `${process.env.REACT_APP_API_URL}`;
   const { id } = useParams();
   const [postInfo, setPostInfo] = useState(null);
   const [redirect, setRedirect] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch(`${url}/post/${id}`)
       .then((response) => response.json())
       .then((postInfo) => setPostInfo(postInfo));
+    setIsLoading(false);
   }, []);
 
   async function deletePost() {
@@ -30,9 +33,19 @@ const DeletePage = ({ closeModal }) => {
   if (redirect) {
     return <Navigate to="/" />;
   }
-
+  if (isLoading) {
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
+  }
   if (!postInfo) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loader">
+        <Loader />
+      </div>
+    );
   }
 
   return (
@@ -46,6 +59,7 @@ const DeletePage = ({ closeModal }) => {
         <button className="button_delete" onClick={deletePost}>
           Yes
         </button>
+        
         <button className="button_delete" onClick={closeModal}>
           No
         </button>
