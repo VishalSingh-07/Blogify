@@ -1,0 +1,64 @@
+.modal,
+.overlay {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  width: 100vw;
+}
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+  
+}
+.modal-content {
+  background-color: rgb(5, 6, 45);
+  border: 0.4rem solid rgba(88.67, 117, 244.33, 1);
+  border-radius: 1rem;
+  color: #fff;
+  line-height: 1.5;
+  left: 50%;
+  max-width: 60rem;
+  min-width: 30rem;
+  position: absolute;
+  padding: 3rem 5rem;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  text-align: justify;
+}
+
+.modal-content h1,
+.modal-content h2,
+.modal-content h3,
+.modal-content p {
+  font-family: "Poppins", sans-serif;
+  text-align: justify;
+}
+
+.modal-content h1 {
+  margin-bottom: 2rem;
+}
+
+.modal-content h2 {
+  color: rgba(88.67, 117, 244.33, 1);
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+}
+
+.modal-content h3 {
+  font-size: 1.8rem;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+}
+
+.modal-content h3 p {
+  display: inline;
+  font-size: 1.6rem;
+}
+.button-div {
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+  margin-top: 3rem;
+}

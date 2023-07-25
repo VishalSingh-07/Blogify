@@ -1,0 +1,116 @@
+.Navbar {
+  align-items: center;
+  border-radius: 1.3rem;
+  background-color: #222222e3;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  left: 50%;
+  padding-right: 3rem;
+  position: fixed;
+  height: 8rem;
+  width: 90%;
+  top: 2rem;
+  transform: translate(-50%);
+  z-index: 100;
+}
+
+.logo {
+  align-items: center;
+  border-radius: 1rem;
+  background-color: #2a2f4f;
+  border-right: 2px solid rgb(255, 0, 0);
+  color: black;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 6%;
+  height: 8rem;
+}
+
+.logo img {
+  display: block;
+  margin: 0 auto;
+  width: 40%;
+}
+
+.text i {
+  margin-right: 1rem;
+}
+.search-bar {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin-right: 2rem;
+  right: 50rem;
+  width: 10%;
+}
+
+.search-bar i {
+  color: white;
+  font-size: 4rem;
+}
+
+.nav-menu {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 1rem;
+  list-style-type: none;
+  justify-content: end;
+  text-align: center;
+}
+
+.fa-bars,
+.fa-times {
+  color: #fff;
+  font-size: 3rem;
+}
+
+.menu-icons {
+  display: none;
+}
+@media screen and (max-width: 1023px) {
+  .Navbar {
+    z-index: 999;
+  }
+  .nav-menu {
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0.8rem 3.2rem 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(0.4rem);
+    border-radius: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    left: -110%;
+    margin: 0;
+    height: auto;
+    position: absolute;
+    padding: 12rem 8rem 6rem 8rem;
+    transition: all 0.3s ease-in-out;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+  .search-bar {
+    right: 9rem;
+  }
+  .search-bar i {
+    color: white;
+    font-size: 2.5rem;
+  }
+  .nav-menu.active {
+    left: 0%;
+  }
+  .nav-menu .Link,
+  .nav-menu button {
+    width: 100%;
+  }
+  .menu-icons {
+    display: block;
+  }
+  .logo {
+    width: 20%;
+  }
+}

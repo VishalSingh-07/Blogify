@@ -1,0 +1,96 @@
+.post_page {
+  margin: 0 auto;
+  padding: auto;
+  text-align: center;
+  width: 90%;
+  background-color: var(--color);
+  border-radius: 2rem;
+}
+
+.post_image img {
+  border-radius: 2rem;
+  height: 40rem;
+  width: 100%;
+}
+
+/* .post_image img:hover {
+  transform: scale(1.1) translateX(-5px) translateY(-5px);
+  transition: 0.5s ease-in-out;
+} */
+
+.post_page h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 4rem;
+  font-weight: bolder;
+  margin: 5rem 0 2rem 0;
+}
+.post_page time {
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.2rem;
+  word-spacing: 0.5rem;
+}
+.post_page time i {
+  padding: 2rem;
+}
+
+.author {
+  color: grey;
+  font-family: "Lato", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 2rem 0 4rem 0;
+}
+
+.edit-row {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 4rem 0;
+}
+
+.content {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.8rem;
+  margin-top: 4rem;
+  padding: 4rem 8rem;
+  text-align: justify;
+}
+
+.content h1 {
+  font-size: 2.2rem;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.content h2 {
+  font-size: 2rem;
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+.content ul {
+  line-height: 1.6;
+  margin-left: 4rem;
+}
+
+.content a {
+  text-decoration: none;
+}
+
+.content img {
+  align-items: center;
+  border-radius: 1.5rem;
+  display: flex;
+  justify-content: center;
+  margin: 2rem auto;
+}
+
+.content pre {
+  background-color: aliceblue;
+  border-radius: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  overflow-x: auto;
+}
